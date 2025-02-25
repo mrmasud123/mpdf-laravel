@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use PDF;
 class PDFController extends Controller
@@ -25,6 +26,27 @@ class PDFController extends Controller
 
         $mpdf->WriteHTML($html);
         
-        $mpdf->Output();
+        $mpdf->Output("Proyas Report-".time().".pdf", 'D');
+    }
+
+    public function viewData(){
+        $empData=Employee::all();
+        return view('dbdata', compact('empData'));
+    }
+
+    public function downloadEmployeePDF(){
+        $empData=Employee::all();
+        $html = view('employee-data', compact('empData'));
+        $mpdf = new \Mpdf\Mpdf(['format' => 'A4']);
+
+        $mpdf->setAutoTopMargin = 'stretch';
+
+        $mpdf->setAutoBottomMargin = 'stretch';
+
+        $mpdf->WriteHTML($html);
+
+        $mpdf->Output("Proyas Employee Report-".time().".pdf", 'I');
     }
 }
+
+

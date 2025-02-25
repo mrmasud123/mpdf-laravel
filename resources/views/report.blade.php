@@ -58,6 +58,9 @@
         
     </htmlpageheader>
     
+    mysql->p
+
+
     <htmlpagefooter name="page-footer">
         <div class="footer">
             <table style="border: none; width: 100%; border-collapse: collapse;margin-bottom:20px;">

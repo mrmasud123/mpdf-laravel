@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Report Generate</title>
-    <!-- Add Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>POMIS1 Office wise Consolidate Report</h2>
+    <h2 class="p-2">POMIS1 Office wise Consolidate Report</h2>
     <hr>
 
-    <!-- Bootstrap Form -->
     <div class="container mt-4 mb-4">
         <form>
             <div class="form-group">
@@ -62,6 +60,7 @@
                 </select>
             </div>
             <a href="{{ route('generate.pdf') }}" class="btn btn-sm btn-warning">Generate Report</a>
+            <a href="{{ route('view.data') }}" class="btn btn-sm btn-success">View Employee Data</a>
         </form>
     </div>
 
