@@ -86,7 +86,7 @@ class PDFController extends Controller
         $empData->email = $request->email;
         $empData->project_name = $request->project;
         $empData->phone_number = $request->phone;
-        $empData->update();
+        $empData->save();
         return redirect()->route('view.data')->with('success', 'Employee updated successfully');
     }
     public function delete(Request $request){
