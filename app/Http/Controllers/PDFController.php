@@ -47,6 +47,59 @@ class PDFController extends Controller
 
         $mpdf->Output("Proyas Employee Report-".time().".pdf", 'I');
     }
+
+    public function create(){
+        return view('add-employee');
+    }
+
+    public function save(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:employees,email',
+            'phone' => 'required|numeric|unique:employees,phone_number',
+            'project' => 'required',
+        ]);
+
+        $emp = new Employee();
+        $emp->name = $request->name;
+        $emp->email = $request->email;
+        $emp->project_name = $request->project;
+        $emp->phone_number = $request->phone;
+        $emp->save();
+
+        return redirect()->route('view.data')->with('success', 'Employee added successfully');
+    }
+    public function edit(Request $request){
+        $id=$request->id;       
+        $empData=Employee::find($id);
+        return view('edit-employee', compact('empData'));
+    }
+    public function update(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:employees,email,'.$request->id,
+            'phone' => 'required|numeric|unique:employees,phone_number,'.$request->id,
+            'project' => 'required',
+        ]);      
+        $empData=Employee::find($request->id);
+        $empData->name = $request->name;
+        $empData->email = $request->email;
+        $empData->project_name = $request->project;
+        $empData->phone_number = $request->phone;
+        $empData->update();
+        return redirect()->route('view.data')->with('success', 'Employee updated successfully');
+    }
+    public function delete(Request $request){
+        $id=$request->id;
+        $empData=Employee::find($id);
+        if(!empty($empData)){
+            $empData->delete();
+            return redirect()->route('view.data')->with('success', 'Employee deleted successfully');
+        }
+    }
+    public function view(Request $request){
+        $id=$request->id;
+        $empData=Employee::find($id);
+        return view('single-employee', compact('empData'));
+    }
 }
-
-

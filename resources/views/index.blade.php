@@ -61,6 +61,7 @@
             </div>
             <a href="{{ route('generate.pdf') }}" class="btn btn-sm btn-warning">Generate Report</a>
             <a href="{{ route('view.data') }}" class="btn btn-sm btn-success">View Employee Data</a>
+            {{ $app_name }}
         </form>
     </div>
 
