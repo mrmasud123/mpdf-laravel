@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\TestingMiddleware;
@@ -25,3 +26,4 @@ Route::get('employee/delete/{id}', [PDFController::class, 'delete'])->name('empl
 Route::get('employee/view/{id}', [PDFController::class, 'view'])->name('employee.view');
 
 Route::get('/load-pdf', [PDFController::class, 'pdf'])->name('load.pdf');
+Route::get('/load-excel', [ExcelController::class, 'excel'])->name('load.excel');

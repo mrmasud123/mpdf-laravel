@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use PDF;
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
+use Illuminate\Support\Facades\View;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx as XLXS;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+
 class PDFController extends Controller
 {
     public function generatePDF(){
@@ -113,13 +120,9 @@ class PDFController extends Controller
 
         $pdfContent = $mpdf->Output('', 'S');
 
-        // return response($pdfContent)->header('Content-Type', 'application/pdf');
-
-        return response($pdfContent)
-        ->header('Content-Type', 'application/pdf')
-        ->header('Content-Disposition', 'inline; filename="report.pdf"')
-        ->header('Access-Control-Allow-Origin', '*');
-
+        return response($pdfContent)->header('Content-Type', 'application/pdf');
     }
+
+    
     
 }

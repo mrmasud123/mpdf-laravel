@@ -79,7 +79,7 @@
                         <h2>Report Preview</h2>
                         <div class="btns">
                             <a href="{{ route('generate.pdf') }}" class="btn btn-sm btn-primary">PDF</a>
-                            <button type="button" class="btn btn-sm btn-warning">Excel</button>
+                            <button type="button" onclick="printEXCEL()" class="btn btn-sm btn-warning">Excel</button>
                             <button type="button" onclick="printPDF()" class="btn btn-sm btn-info">Print</button>
                         </div>
                     </div>
@@ -98,23 +98,6 @@
         }
         function printPDF() {
             var pdfUrl = document.getElementById('pdf-preview').src;
-            if (!pdfUrl) {
-                alert("No PDF loaded to print.");
-                return;
-            }
-
-            // fetch(pdfUrl)
-            //     .then(response => response.blob())
-            //     .then(blob => {
-            //         var blobUrl = URL.createObjectURL(blob);
-            //         console.log(blob);
-            //         var newWindow = window.open(blobUrl);
-            //         // newWindow.onload = function () {
-            //         //     newWindow.print();
-            //         // };
-            //     })
-            //     .catch(error => console.error("Error fetching PDF:", error));
-
             fetch(pdfUrl)
             .then(response => response.blob())
             .then(blob=>{
@@ -124,7 +107,10 @@
                     newWindow.print()
                 }
             });
+        }
 
+        function printEXCEL(){
+            window.location.href="{{ route('load.excel') }}";
         }
 
 
