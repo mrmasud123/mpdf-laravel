@@ -16,13 +16,9 @@ class PDFController extends Controller
 
         $mpdf->allow_charset_conversion = true;
 
-        $mpdf->SetTitle('Consolidate Report-'. time());
-
         $mpdf->setAutoTopMargin = 'stretch';
 
         $mpdf->setAutoBottomMargin = 'stretch';
-
-        $mpdf->setFooter('Page {PAGENO} of {nb}');
 
         $mpdf->WriteHTML($html);
         
@@ -102,4 +98,28 @@ class PDFController extends Controller
         $empData=Employee::find($id);
         return view('single-employee', compact('empData'));
     }
+
+    public function pdf(){
+
+        $mpdf = new \Mpdf\Mpdf(['format' => 'A4']);
+
+        $html = view('report');
+
+        $mpdf->allow_charset_conversion = true;
+        $mpdf->setAutoTopMargin = 'stretch';
+
+        $mpdf->setAutoBottomMargin = 'stretch';
+        $mpdf->WriteHTML($html);
+
+        $pdfContent = $mpdf->Output('', 'S');
+
+        // return response($pdfContent)->header('Content-Type', 'application/pdf');
+
+        return response($pdfContent)
+        ->header('Content-Type', 'application/pdf')
+        ->header('Content-Disposition', 'inline; filename="report.pdf"')
+        ->header('Access-Control-Allow-Origin', '*');
+
+    }
+    
 }

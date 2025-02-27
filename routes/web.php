@@ -23,3 +23,5 @@ Route::post('employee/update/{id}', [PDFController::class, 'update'])->name('emp
 
 Route::get('employee/delete/{id}', [PDFController::class, 'delete'])->name('employee.delete');
 Route::get('employee/view/{id}', [PDFController::class, 'view'])->name('employee.view');
+
+Route::get('/load-pdf', [PDFController::class, 'pdf'])->name('load.pdf');

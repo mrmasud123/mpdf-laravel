@@ -57,8 +57,6 @@
         </span>
         
     </htmlpageheader>
-    
-    mysql->p
 
 
     <htmlpagefooter name="page-footer">
