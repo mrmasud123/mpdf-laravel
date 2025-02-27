@@ -64,8 +64,6 @@ class ExcelController extends Controller
                 $sheet->setCellValue($arr[$c].$a, '50');
             }
         }
-
-
         $file=new XLXS($spreadSheet);
         $file->save('proyas-report'.time().'.xlsx');
         return response()->download('proyas-report'.time().'.xlsx');
